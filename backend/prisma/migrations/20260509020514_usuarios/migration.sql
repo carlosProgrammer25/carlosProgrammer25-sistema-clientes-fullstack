@@ -1,0 +1,18 @@
+-- CreateTable
+CREATE TABLE `clientes` (
+    `ID` INTEGER NOT NULL AUTO_INCREMENT,
+    `Nome` VARCHAR(150) NOT NULL,
+    `Idade` INTEGER NOT NULL,
+    `UF` CHAR(2) NOT NULL,
+
+    PRIMARY KEY (`ID`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `usuarios` (
+    `ID` INTEGER NOT NULL AUTO_INCREMENT,
+    `Email` VARCHAR(150) NOT NULL,
+    `Senha` VARCHAR(150) NOT NULL,
+
+    PRIMARY KEY (`ID`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

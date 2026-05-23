@@ -1,0 +1,14 @@
+.loading-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-button img {
+  width: 35px;   /* maior */
+  height: 35px;
+  object-fit: contain;
+}
+

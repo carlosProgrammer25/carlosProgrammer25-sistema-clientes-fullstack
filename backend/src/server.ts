@@ -4,9 +4,9 @@ import "dotenv/config";
 //npm install --save-dev @types/express => ts nao entende typagem do express
 import express from "express";
 import cors from "cors";
-import { getClientes, getCliente, UpdateCliente, addCliente, deleteCliente } from "./repositories/clientesRepository.ts"
+import { getClientes, getCliente, UpdateCliente, addCliente, deleteCliente, painelReg, paineLog, buscarUsuarioPorEmail } from "./repositories/clientesRepository.ts"
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 //instancia o servidor 
 const app = express();
 app.use(cors()); // comunicacao front e back
@@ -15,6 +15,59 @@ app.use(express.json());
 
 
 // ROTAS
+
+
+app.post('/painelRegistrar', async (req, res) => {
+    //fazer o cadastro no banco
+    try {
+        {/*verificando se existe usuario no cadastro */ }
+        const existe = await buscarUsuarioPorEmail(req.body.usuario)
+
+        if (existe) {
+            return res.status(400).json({
+                message: "Usuário já existe",
+                ok:false
+            })
+        }
+
+        //cria se nao existir o  usuario
+        const resposta = await painelReg(req.body.usuario, req.body.senha)
+
+        return res.status(201).json(resposta)
+
+    }
+    catch (error) {
+        return res.status(500).json({
+            message: "Erro ao criar Usuario"
+        })
+    }
+})
+
+app.post('/paineLogin', async (req, res) => {
+    try {
+        const resposta = await paineLog(req.body.usuario, req.body.senha)
+
+        //encontrou o usuairo
+        if (resposta) {
+            //liberar acesso a clientes
+            return res.status(200).json({
+                sucesso: true,
+                mensagem: "login efetuado",
+                usuario: resposta.Email
+            })
+        }
+
+        //pega nan, null, underfine nao encontar na tabela
+        return res.status(401).json({
+            sucesso: false,
+            mensagem: "Usuário ou senha inválidos"
+        })
+    }
+    catch (error) {
+        res.status(500).json({ message: 'erro ao criar' })
+    }
+})
+
 // Buscar todos os dados da tabela
 app.get('/clientes', async (req, res) => {
     try {
@@ -47,6 +100,7 @@ app.get("/cliente/:id", async (req, res) => {
             return res.status(404).json({ erro: `Cliente com id ${req.params.id} nao encontrado` })
         };
 
+        //ao acessar o retorno no front, os dados estao dentro da propriedade data do obj retornado da api
         return res.status(200).json({
             success: true,
             data: resultado
@@ -88,8 +142,8 @@ app.put('/atualizar/:id', async (req, res) => {
     }
     catch (error) {
         //se nao atualizr update retorna erro
-        console.error(error);
-        res.status(500).json({ erro: "Erro interno" });
+        console.error('erro ao atualizar', error);
+        throw error
     };
 });
 
@@ -110,6 +164,7 @@ app.post('/criar', async (req, res) => {
         if (isNaN(idade)) {
             return res.status(400).json({ erro: "Idade inválida" });
         }
+
         //se idade for igual a numero
         req.body.idade = idade;
 
@@ -126,7 +181,7 @@ app.post('/criar', async (req, res) => {
     catch (error) {
         //se nao inserir dados na tabela, retorna erro
         console.error(error);
-        res.status(500).json({ erro: "erro servidor" });
+        throw error
     };
 });
 

@@ -1,0 +1,711 @@
+/* =========================================
+   GLOBAL CSS - SISTEMA CLIENTES
+   ESTILO MODERNO DARK
+========================================= */
+
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at top left, #1e293b 0%, #0f172a 45%),
+        linear-gradient(to bottom, #020617, #0f172a);
+    color:#f8fafc;
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0f172a;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#334155;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#475569;
+}
+
+/* =========================================
+   TEXTOS GLOBAIS
+========================================= */
+
+h1,h2,h3,h4,h5,h6{
+    color:white;
+    font-weight:700;
+    letter-spacing:-0.5px;
+}
+
+p{
+    color:#cbd5e1;
+    line-height:1.5;
+}
+
+span{
+    color:#e2e8f0;
+}
+
+label{
+    color:#f8fafc;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* =========================================
+   INPUTS GLOBAIS
+========================================= */
+
+input{
+    width:100%;
+    border:none;
+    outline:none;
+    padding:15px 18px;
+    border-radius:14px;
+    background:#0f172a;
+    color:white;
+    border:1px solid #334155;
+    font-size:15px;
+    transition:0.25s;
+}
+
+input::placeholder{
+    color:#64748b;
+}
+
+input:focus{
+    border:1px solid #3b82f6;
+    box-shadow:0 0 0 4px rgba(59,130,246,0.15);
+    transform:translateY(-1px);
+}
+
+/* =========================================
+   BUTTONS GLOBAIS
+========================================= */
+
+button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+    transition:0.25s;
+    font-family:'Inter', sans-serif;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+button:active{
+    transform:scale(0.98);
+}
+
+button:disabled{
+    opacity:0.7;
+    cursor:not-allowed;
+}
+
+/* =========================================
+   FORM GERAL
+========================================= */
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+/* =========================================
+   PAGES
+========================================= */
+
+/* =========================================
+   PAINEL PAGE
+========================================= */
+
+.center-painel{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+    padding:40px;
+    flex-wrap:wrap;
+}
+
+.center-logar{
+    width:100%;
+    max-width:420px;
+    background:rgba(15,23,42,0.88);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:28px;
+    padding:35px;
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.logar h1{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:10px;
+    font-weight:800;
+    background:linear-gradient(to right,#60a5fa,#38bdf8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.logar button{
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    background:linear-gradient(to right,#2563eb,#3b82f6);
+    color:white;
+    font-size:15px;
+    font-weight:700;
+    margin-top:5px;
+    box-shadow:0 10px 20px rgba(37,99,235,0.25);
+}
+
+.center-logar > button{
+    width:100%;
+    margin-top:18px;
+    padding:15px;
+    border-radius:14px;
+    background:rgba(59,130,246,0.08);
+    border:1px solid rgba(59,130,246,0.25);
+    color:#93c5fd;
+    font-weight:700;
+}
+
+.center-logar > button:hover{
+    background:#2563eb;
+    color:white;
+}
+
+.-center-cadastro{
+    width:100%;
+    max-width:420px;
+}
+
+
+
+.cadastrar h3{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.cadastrar button{
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+
+    background: linear-gradient(to right, #2563eb, #3b82f6);
+
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+
+    transition: 0.25s;
+
+    box-shadow:
+        0 10px 20px rgba(37, 99, 235, 0.25),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.cadastrar button:hover{
+    transform: translateY(-2px);
+    background: linear-gradient(to right, #1d4ed8, #2563eb);
+
+    box-shadow:
+        0 15px 25px rgba(37, 99, 235, 0.35),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.cadastrar button:active{
+    transform: scale(0.98);
+}
+
+/* =========================================
+   CLIENTES PAGE
+========================================= */
+
+.container-principal{
+    width:100%;
+    min-height:100vh;
+    padding:40px;
+}
+
+.titulo-principal-0{
+    text-align:center;
+    font-size:50px;
+    font-weight:900;
+    margin-bottom:45px;
+    background:linear-gradient(to right,#60a5fa,#38bdf8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.section{
+    margin-bottom:30px;
+}
+
+.card-box{
+    background:rgba(15,23,42,0.88);
+    backdrop-filter:blur(16px);
+    border-radius:28px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.06);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* =========================================
+   CRIAR CLIENTE
+========================================= */
+
+.container-criar-registro{
+    width:100%;
+}
+
+.titulo-principal{
+    text-align:center;
+    font-size:34px;
+    margin-bottom:25px;
+}
+
+.form-criar button{
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    background:linear-gradient(to right,#2563eb,#3b82f6);
+    color:white;
+    font-weight:700;
+    font-size:15px;
+}
+
+/* =========================================
+   PESQUISAR CLIENTE
+========================================= */
+
+.container-pesquisa-cliente{
+    width:100%;
+}
+
+.container-pesquisa-cliente button{
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    background:linear-gradient(to right,#0891b2,#06b6d4);
+    color:white;
+    font-weight:700;
+    font-size:15px;
+}
+
+/* =========================================
+   CLIENTE PESQUISADO
+========================================= */
+
+.div-pai{
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+.cliente-encontrado-center{
+    width:100%;
+    max-width:550px;
+    background:#111c2d;
+    border-radius:24px;
+    padding:28px;
+    position:relative;
+    border:1px solid rgba(255,255,255,0.05);
+    overflow:hidden;
+}
+
+.x-editar{
+    position:absolute;
+    top:18px;
+    right:18px;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#ef4444;
+    color:white;
+    font-weight:800;
+    font-size:15px;
+}
+
+.card-header{
+    margin-bottom:24px;
+}
+
+.nome-registro{
+    font-size:30px;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.card-details{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.detail-item{
+    background:#0f172a;
+    border:1px solid #1e293b;
+    border-radius:16px;
+    padding:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.detail-label{
+    color:#38bdf8;
+    font-weight:700;
+}
+
+.detail-value{
+    color:white;
+    font-weight:600;
+}
+
+.card-actions{
+    margin-top:25px;
+    display:flex;
+    gap:15px;
+}
+
+.btn-editar,
+.btn-deletar{
+    flex:1;
+    padding:15px;
+    border-radius:14px;
+    color:white;
+    font-weight:700;
+    font-size:14px;
+}
+
+.btn-editar{
+    background:linear-gradient(to right,#2563eb,#3b82f6);
+}
+
+.btn-deletar{
+    background:linear-gradient(to right,#dc2626,#ef4444);
+}
+
+/* =========================================
+   EDITANDO ID
+========================================= */
+
+.container-form-editar{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+.form-editar{
+    width:100%;
+    max-width:550px;
+    background:#111c2d;
+    border-radius:24px;
+    padding:35px;
+    position:relative;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.titulo-registro{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:34px;
+}
+
+.form-editar button{
+    padding:15px;
+    border-radius:14px;
+    background:linear-gradient(to right,#2563eb,#3b82f6);
+    color:white;
+    font-weight:700;
+}
+
+.fechar{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#ef4444 !important;
+    padding:0 !important;
+}
+
+/* =========================================
+   REGISTRADO
+========================================= */
+
+.registrado-card{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+.center{
+    width:100%;
+    max-width:500px;
+    background:#111c2d;
+    border-radius:24px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.05);
+    animation:fadeUp 0.35s ease;
+}
+
+.div-h{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+    gap:10px;
+}
+
+.h-principal{
+    font-size:28px;
+}
+
+.div-h span{
+    background:#0f172a;
+    padding:10px 14px;
+    border-radius:12px;
+    font-weight:700;
+    color:#38bdf8;
+}
+
+.campo{
+    background:#0f172a;
+    border:1px solid #1e293b;
+    border-radius:14px;
+    padding:15px;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.campo span{
+    color:#38bdf8;
+    font-weight:700;
+}
+
+.center-fechar{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    margin-top:20px;
+}
+
+.buton-fechar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#ef4444;
+    color:white;
+    font-weight:700;
+}
+
+/* =========================================
+   LISTA CLIENTES
+========================================= */
+
+.container-list{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:22px;
+}
+
+.card{
+    background:#111c2d;
+    border-radius:24px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.05);
+    transition:0.25s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:linear-gradient(to right,#3b82f6,#06b6d4);
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 30px rgba(0,0,0,0.3);
+}
+
+.deletar-cliente{
+    margin-top:22px;
+}
+
+.button-deletar{
+    width:100%;
+    padding:14px;
+    border-radius:14px;
+    background:linear-gradient(to right,#dc2626,#ef4444);
+    color:white;
+    font-weight:700;
+}
+
+.vazio{
+    width:100%;
+    padding:50px;
+    background:#111c2d;
+    border-radius:24px;
+    text-align:center;
+}
+
+.titulo{
+    font-size:30px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.sub{
+    color:#64748b;
+}
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading-center{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.loading{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    border:5px solid rgba(255,255,255,0.1);
+    border-top:5px solid #38bdf8;
+    animation:girar 1s linear infinite;
+}
+
+.loading-button{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    border:3px solid rgba(255,255,255,0.4);
+    border-top:3px solid white;
+    animation:girar 0.8s linear infinite;
+    margin:auto;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes girar{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media(max-width:900px){
+
+    .titulo-principal-0{
+        font-size:38px;
+    }
+
+    .center-painel{
+        padding:20px;
+    }
+
+    .container-principal{
+        padding:20px;
+    }
+
+    .card-actions{
+        flex-direction:column;
+    }
+}
+
+@media(max-width:500px){
+
+    .titulo-principal-0{
+        font-size:32px;
+    }
+
+    .logar h1{
+        font-size:32px;
+    }
+
+    .titulo-registro,
+    .titulo-principal{
+        font-size:28px;
+    }
+
+    .card,
+    .center,
+    .form-editar,
+    .cliente-encontrado-center{
+        padding:20px;
+    }
+
+    .div-h{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}

@@ -4,11 +4,19 @@ generator client {
 
 datasource db {
   provider = "mysql"
+  
 }
 
+//estrutura da tabela
 model clientes {
   ID    Int    @id @default(autoincrement())
   Nome  String @db.VarChar(150)
   Idade Int
   UF    String @db.Char(2)
+}
+
+model usuarios{
+  ID     Int    @id @default(autoincrement())
+  Email String @db.VarChar(150) @unique
+  Senha String @db.VarChar(150)
 }

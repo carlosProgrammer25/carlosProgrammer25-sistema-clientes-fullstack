@@ -18,7 +18,54 @@ import { PrismaClient } from "@prisma/client";
 */
 const adapter = new PrismaMariaDb(`${process.env.DATABASE_URL}`);
 //  O prisma possui a configuração de conexão com o banco de dados, enquanto o PrismaMariaDb fornece os dados de conexão por meio do adapter,
-const prisma = new PrismaClient({ adapter });
+
+// Evitar criar várias conexões com o banco usando Prisma.
+/*Cria uma única instância do Prisma e reutiliza ela.
+Se já existir (globalThis.prisma), usa; se não, cria.
+No desenvolvimento salva no global pra não recriar a cada reload.*/
+declare global {
+    var prisma: PrismaClient | undefined;
+}
+const prisma = globalThis.prisma ?? new PrismaClient({ adapter });
+if (process.env.NODE_ENV !== "production") {
+    globalThis.prisma = prisma;
+}
+export default prisma;
+
+
+
+export async function buscarUsuarioPorEmail(usuario: string) {
+    const res = await prisma.usuarios.findUnique({
+        where: {
+            Email: usuario
+        }
+    })
+    return res
+}
+export async function painelReg(usuario: string, senha: string) {
+    return prisma.usuarios.create({
+        data: {
+            Email: usuario,
+            Senha: senha
+        }
+    })
+}
+    
+
+//logar
+export async function paineLog(usuario: string, senha: string) {
+    try {
+        const resultado = await prisma.usuarios.findFirst({
+            where: { Email: usuario, Senha: senha }
+        })
+
+        //sucesso 
+        return resultado
+    }
+    catch (error) {
+        throw error;
+    }
+}
 
 
 // Buscar varios registros
@@ -41,11 +88,6 @@ export async function getCliente(id: number) {
         const resultado = await prisma.clientes.findUnique({
             where: { ID: id }
         });
-
-        //se nao existir registro com id
-        if (!resultado) {
-            return null
-        };
 
         //se existir
         return resultado;
@@ -73,7 +115,7 @@ export async function UpdateCliente(id: number, novoDado: atualizar) {
         });
 
         //PREVENÇÃO DE ERRO
-        //se nao existir o id na tabela retorna null, nao quebra o codigo
+        //se nao existir o id na tabela retorna null
         if (clienteExiste == null) {
             return null;
         };
@@ -83,6 +125,7 @@ export async function UpdateCliente(id: number, novoDado: atualizar) {
             where: { ID: id },
             data: novoDado
         });
+
     } catch (error) {
         //se nao atualizar  update retorna erro
         throw error;
@@ -91,7 +134,7 @@ export async function UpdateCliente(id: number, novoDado: atualizar) {
 
 
 // Criar novo registro
-//Molde de um objeto que será usado como parâmetro
+//Modelo que será usado como parâmetro
 type Cliente = {
     Nome: string;
     Idade: number;
