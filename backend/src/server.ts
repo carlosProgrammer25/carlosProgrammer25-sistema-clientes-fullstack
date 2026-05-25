@@ -6,7 +6,7 @@ import express from "express";
 import cors from "cors";
 import { getClientes, getCliente, UpdateCliente, addCliente, deleteCliente, painelReg, paineLog, buscarUsuarioPorEmail } from "./repositories/clientesRepository.js"
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 //instancia o servidor 
 const app = express();
 app.use(cors()); // comunicacao front e back
