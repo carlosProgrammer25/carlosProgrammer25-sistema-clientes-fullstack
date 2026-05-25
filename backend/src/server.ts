@@ -223,7 +223,7 @@ app.use((req, res) => {
 });
 
 
-//inicia o servidor/liga
-app.listen(PORT, () => {
-    console.log(`servidor rodando na porta ${PORT}`);
+// O "0.0.0.0" é crucial em servidores na nuvem como o Railway
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Servidor rodando na porta ${PORT} 🚀`);
 });
