@@ -4,7 +4,7 @@ import "dotenv/config";
 //npm install --save-dev @types/express => ts nao entende typagem do express
 import express from "express";
 import cors from "cors";
-import { getClientes, getCliente, UpdateCliente, addCliente, deleteCliente, painelReg, paineLog, buscarUsuarioPorEmail } from "./repositories/clientesRepository.ts"
+import { getClientes, getCliente, UpdateCliente, addCliente, deleteCliente, painelReg, paineLog, buscarUsuarioPorEmail } from "./repositories/clientesRepository.js"
 
 const PORT = process.env.PORT || 3000;
 //instancia o servidor 
