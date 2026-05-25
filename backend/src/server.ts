@@ -4,7 +4,7 @@ import "dotenv/config";
 //npm install --save-dev @types/express => ts nao entende typagem do express
 import express from "express";
 import cors from "cors";
-import { getClientes, getCliente, UpdateCliente, addCliente, deleteCliente, painelReg, paineLog, buscarUsuarioPorEmail } from "./repositories/clientesRepository.ts"
+import { getClientes, getCliente, UpdateCliente, addCliente, deleteCliente, painelReg, paineLog, buscarUsuarioPorEmail } from "./repositories/clientesRepository.js"
 
 const PORT = process.env.PORT || 3000;
 //instancia o servidor 
@@ -223,7 +223,7 @@ app.use((req, res) => {
 });
 
 
-//inicia o servidor/liga
-app.listen(PORT, () => {
-    console.log(`servidor rodando na porta ${PORT}`);
+// O "0.0.0.0" é crucial em servidores na nuvem como o Railway
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Servidor rodando na porta ${PORT} 🚀`);
 });
