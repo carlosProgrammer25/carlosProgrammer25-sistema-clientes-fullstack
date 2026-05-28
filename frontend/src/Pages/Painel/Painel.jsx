@@ -1,7 +1,7 @@
 import React from 'react';
 import { logUsuario, cadastrarUsuario } from '../../service/clientesService'
 import { useState } from 'react'
-import { Cadastrar } from '../../Components/Cadastrar/Cadastrar'
+import { Cadastrar } from '../../components/Cadastrar/Cadastrar'
 
 
 
