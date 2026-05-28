@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CriarCliente, Registrado } from "../../Components/CriarCliente/CriarCliente.jsx"
+import { CriarCliente, Registrado } from "../../Components/CriarCliente/CriarCliente"
 import { PesquisarCliente } from "../../Components/PesquisarCliente/PesquisarCliente"
 import { ClientePesquisado } from "../../Components/ClientePesquisado/ClientePesquisado"
 import { EditandoID } from "../../Components/EditandoID/EditandoID"
