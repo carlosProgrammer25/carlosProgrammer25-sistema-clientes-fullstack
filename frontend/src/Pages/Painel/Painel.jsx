@@ -88,6 +88,7 @@ function Painel({ setLogado, setErro }) {
             }, 2000);
         }
         catch (error) {
+            console.log('pnh')
             setErro('Erro no servidor');
             setTimeout(() => {
                 setErro(null)
