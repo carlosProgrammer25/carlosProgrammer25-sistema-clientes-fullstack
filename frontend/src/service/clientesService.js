@@ -29,6 +29,8 @@ export async function cadastrarUsuario(usuario) {
 export async function logUsuario(usuario) {
     try {
         const API_URL = import.meta.env.VITE_API_URL;
+
+        console.log("Variável de Ambiente VITE_API_URL:", import.meta.env.VITE_API_URL);
         
         const res = await fetch(`${API_URL}paineLogin`, {
             method: 'POST',
