@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { CriarCliente, Registrado } from "../../Components/CriarCliente/CriarCliente"
-import { PesquisarCliente } from "../../Components/PesquisarCliente/PesquisarCliente"
-import { ClientePesquisado } from "../../Components/ClientePesquisado/ClientePesquisado"
-import { EditandoID } from "../../Components/EditandoID/EditandoID"
-import { ListaClientes } from "../../Components/ListaClientes/ListaClientes"
-import { Erro } from "../../Components/Erro/Erro"
+import { CriarCliente, Registrado } from "../../components/CriarCliente/CriarCliente"
+import { PesquisarCliente } from "../../components/PesquisarCliente/PesquisarCliente"
+import { ClientePesquisado } from "../../components/ClientePesquisado/ClientePesquisado"
+import { EditandoID } from "../../components/EditandoID/EditandoID"
+import { ListaClientes } from "../../components/ListaClientes/ListaClientes"
+import { Erro } from "../../components/Erro/Erro"
 import { buscarClientes, buscarCliente, atualizarDados, criarRegistro, deleteCliente, } from "../../service/clientesService"
-import { Loading } from "../../Components/Loading/Loading";
-import { LoadingButton } from "../../Components/Loading/LoadingButton"
+import { Loading } from "../../components/Loading/Loading";
+import { LoadingButton } from "../../components/Loading/LoadingButton"
 
 function Clientes({ erro, setErro }) {
     //estado -> valor atual, funcao que altera o valor
