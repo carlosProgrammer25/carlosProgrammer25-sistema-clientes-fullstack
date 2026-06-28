@@ -1,10 +1,21 @@
-//logica de comunicacao com a api/ camada de serviços
-const API_URL = import.meta.env.VITE_API_URL;
+// Lógica de comunicação com a API / camada de serviços
+const RAW_API_URL = import.meta.env.VITE_API_URL || '';
+
+// 1. Limpa possíveis colchetes que vieram da Netlify
+let cleanUrl = RAW_API_URL.replace(/[\[\]]/g, '');
+
+// 2. Garante que sempre comece com https:// para forçar rota externa
+if (!cleanUrl.startsWith('http')) {
+    cleanUrl = `https://${cleanUrl}`;
+}
+
+// 3. Garante que a URL base sempre termine com uma barra '/'
+const URL_SEGURA = cleanUrl.endsWith('/') ? cleanUrl : `${cleanUrl}/`;
 
 
 export async function cadastrarUsuario(usuario) {
     try {
-        const res = await fetch(`${API_URL}painelRegistrar`, {
+        const res = await fetch(`${URL_SEGURA}painelRegistrar`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -12,105 +23,85 @@ export async function cadastrarUsuario(usuario) {
             body: JSON.stringify(usuario)
         });
 
-        const dados = await res.json()
-        
-        //se registro existir no banco
-        if (!res.ok) {
-            return dados; // vem do backend
-        }
+        const dados = await res.json();
 
-        return dados
-    }
-    catch (error) {
+        if (!res.ok) {
+            return dados;
+        }
+        return dados;
+    } catch (error) {
         throw error;
     }
 }
 
 export async function logUsuario(usuario) {
     try {
-        const API_URL = import.meta.env.VITE_API_URL;
-
-        console.log("Variável de Ambiente VITE_API_URL:", API_URL);
-        
-        const res = await fetch(`${API_URL}paineLogin`, {
+        const res = await fetch(`${URL_SEGURA}paineLogin`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(usuario)
         });
-        const dados = await res.json()
 
-        //sucesso
+        const dados = await res.json();
+
         if (!res.ok) {
-            console.log('erro')
-            return
+            console.log('erro');
+            return;
         }
-        console.log('sucesso')
-
-        return res
+        console.log('sucesso');
+        return res;
+    } catch (error) {
+        throw error;
     }
-    catch (error) {
-        throw error
-    }
-
-
 }
 
 export async function buscarClientes() {
     try {
-        //enviando req para o servidor
-        const res = await fetch(`${API_URL}clientes`);
+        const res = await fetch(`${URL_SEGURA}clientes`);
         const data = await res.json();
-
         return data;
-
     } catch (error) {
-        //erro no servidor
         console.error("Erro ao buscar clientes:", error);
-        throw error
-    };
-};
+        throw error;
+    }
+}
 
 export async function buscarCliente(registroId) {
     try {
-        const res = await fetch(`${API_URL}cliente/${registroId}`)
+        const res = await fetch(`${URL_SEGURA}cliente/${registroId}`);
 
-        //se nao existir o registro no banco
         if (!res.ok) {
             return null;
-        };
+        }
 
-        //retorno sucesso
-        const data = await res.json()
+        const data = await res.json();
         return data;
-
     } catch (error) {
         throw error;
-    };
-};
-
+    }
+}
 
 export async function atualizarDados(cliente) {
     try {
-        const res = await fetch(`${API_URL}atualizar/${cliente.ID}`, {
+        const res = await fetch(`${URL_SEGURA}atualizar/${cliente.ID}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(cliente)
         });
+        return res;
     } catch (error) {
         console.error("Erro ao atualizar o registro:", error);
-        throw error
-    };
-};
-
+        throw error;
+    }
+}
 
 export async function criarRegistro(cliente) {
     try {
-        //contruindo a req 
-        const res = await fetch(`${API_URL}criar`, {
+        const res = await fetch(`${URL_SEGURA}criar`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -118,28 +109,21 @@ export async function criarRegistro(cliente) {
             body: JSON.stringify(cliente)
         });
 
-        //sucesso
-        return res.json()
+        return res.json();
     } catch (error) {
         console.error("Erro ao criar o registro:", error);
         throw error;
-    };
+    }
+}
 
-
-};
-
-//deletar registro
 export async function deleteCliente(cliente) {
     try {
-        const res = await fetch(`${API_URL}deletar/${cliente.ID}`,
-            { method: "DELETE" }
-        );
+        const res = await fetch(`${URL_SEGURA}deletar/${cliente.ID}`, {
+            method: "DELETE"
+        });
+        return res;
     } catch (error) {
-        //erro no servidor
         console.error("Erro ao deletar o registro:", error);
         throw error;
-    };
-};
-
-
-
+    }
+}
